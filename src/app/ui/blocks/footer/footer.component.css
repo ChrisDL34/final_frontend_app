@@ -1,0 +1,133 @@
+/* Footer */
+
+.footer {
+    background-color: #136696;
+    color: #fff;
+    padding: 40px 25px;
+    height: 188px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.footer-nav {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.footer-nav h3 {
+    margin-right: 40px;
+    font-weight: 600;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.footer-nav-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.footer-nav-item {
+    margin-right: 30px;
+}
+
+.footer-nav-link {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.footer-nav-link:hover {
+    color: #ddd;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+    flex-wrap: wrap;
+}
+
+.footer-bottom-text {
+    margin: 0;
+    font-weight: 500;
+}
+
+.footer-bottom-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.footer-bottom-item {
+    margin-left: 30px;
+}
+
+.footer-bottom-link {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.footer-bottom-link:hover {
+    color: #ddd;
+}
+
+@media (max-width: 768px) {
+    .footer-top {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .footer-nav {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 20px;
+    }
+
+    .footer-nav h3 {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .footer-nav-list {
+        flex-direction: column;
+    }
+
+    .footer-nav-item {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .footer-bottom-list {
+        margin-top: 10px;
+    }
+
+    .footer-bottom-item {
+        margin-left: 0;
+        margin-right: 30px;
+    }
+}
