@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LayoutMainComponent } from '../ui/layouts/layout-main/layout-main.component';
 import { AdminManagmentContainerComponent } from '../containers/admin-managment-container/admin-managment-container.component';
 import { RequestProviderContainerComponent } from '../containers/request-provider-container/request-provider-container.component';
+import { UserContainerComponent } from '../containers/user-container/user-container.component';
 
 const routes: Routes = [
 
@@ -12,7 +13,7 @@ const routes: Routes = [
   children:[
     {
       path:'',
-       component: AdminManagmentContainerComponent,
+       component: UserContainerComponent,
        outlet: 'main'
     }
   ],

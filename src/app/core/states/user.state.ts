@@ -6,17 +6,17 @@ import { User } from '../models/users.model';
   providedIn: 'root',
 })
 export class UserState {
-  private usersSubject: BehaviorSubject<User[]> = new BehaviorSubject<User[]>([]);
-  users$: Observable<User[]> = this.usersSubject.asObservable();
+  private users$: BehaviorSubject<User[]> = new BehaviorSubject<User[]>([]);
+  usersData$: Observable<User[]> = this.users$.asObservable();
 
 
   constructor() {}
 
-  setUsers(users: User[]): void {
-    this.usersSubject.next(users);
+  setUsers(users: User[]) {
+    this.users$.next(users);
   }
 
   getUsers(): User[] {
-    return this.usersSubject.value;
+    return this.users$.value;
   }
 }

@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from '../../../core/models/users.model';
 
 @Component({
   selector: 'app-admin-managment',
@@ -10,7 +11,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./admin-managment.component.css']
 })
 export class AdminManagmentComponent {
-  constructor(private router: Router) {}
+  @Input()
+  users!: User[] | null;
+}
+
+  /*
+
 
   usuarios = [
     { username: 'john_doe', email: 'john@example.com', rol: 'admin' },
@@ -27,12 +33,12 @@ export class AdminManagmentComponent {
   ];
 
   editarUsuario(usuario: any) {
-    
-  
+
+
   }
 
   eliminarUsuario(usuario: any) {
-    
+
   }
 
   pedidoUsuario(usuario: any) {
@@ -42,4 +48,14 @@ export class AdminManagmentComponent {
   agregarUsuario() {
     this.router.navigate(['/request-providers']);
   }
+
 }
+<div class="buttton_container">
+    <a class="add-user-button" (click)="agregarUsuario()">Agregar Usuario</a>
+</div>
+
+                        <button (click)="editarUsuario(usuario)">Editar</button>
+                        <button (click)="eliminarUsuario(usuario)">Eliminar</button>
+                        <button *ngIf="usuario.rol === 'provider'" (click)="pedidoUsuario(usuario)">Pedido</button>
+
+*/

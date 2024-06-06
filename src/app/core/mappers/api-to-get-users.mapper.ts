@@ -8,7 +8,7 @@ export class ApiToGetAllUsersMapper{
   map(response: any): User{
     return{
       userId: response.userId,
-      userName: response.userName,
+      username: response.username,
       email: response.email,
       role: response.role
     }
