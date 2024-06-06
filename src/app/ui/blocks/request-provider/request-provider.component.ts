@@ -1,5 +1,6 @@
 import { CommonModule, NgForOf } from '@angular/common';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 interface Libro {
   titulo: string;
@@ -21,6 +22,10 @@ interface ItemCarrito {
   styleUrls: ['./request-provider.component.css']
 })
 export class RequestProviderComponent {
+
+  constructor( private router: Router) {
+  }
+
   libros: Libro[] = [
     {
       titulo: 'El ingenioso hidalgo Don Quijote de la Mancha',
@@ -75,5 +80,9 @@ export class RequestProviderComponent {
     console.log('Solicitud enviada:', this.carrito);
     this.carrito = [];
     this.cerrarModal();
+  }
+
+  cancel() {
+    this.router.navigate(['/admin-managment']);
   }
 }
