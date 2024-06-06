@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
+import { EditUserComponent } from '../../ui/forms/edit-user/edit-user.component';
 
 @Component({
   selector: 'app-edit-user-container',
   standalone: true,
-  imports: [],
+  imports: [EditUserComponent],
   templateUrl: './edit-user-container.component.html',
-  styleUrl: './edit-user-container.component.css'
+  
 })
 export class EditUserContainerComponent {
 
