@@ -1,0 +1,40 @@
+<div class="register__container">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="register__form">
+    <h1 class="register__title">Editar Usuario</h1>
+    <fieldset class="register__fieldset">
+      <label class="register__label">
+        <span class="register__span">Username</span>
+        <input type="text" formControlName="username" class="register__input" [class.error]="registerForm.get('username')?.invalid && registerForm.get('username')?.touched">
+      </label>
+      <span *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched" class="register__span-error">
+        El username debe tener al menos 3 caracteres.
+      </span>
+      
+      <label class="register__label">
+        <span class="register__span">Correo electrónico</span>
+        <input type="email" formControlName="email" class="register__input" [class.error]="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+      </label>
+      <span *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="register__span-error">
+        Introduzca una dirección de correo electrónico válida.
+      </span>
+      
+      <label class="register__label">
+        <span class="register__span">ROL</span>
+        <select formControlName="role" class="register__input">
+          <option value="invitado">Asistente</option>
+          <option value="administrador">Administrador</option>
+          <option value="proveedor">Proveedor</option>
+          <option value="lector">Lector</option>
+        </select>
+      </label>
+      
+      <span *ngIf="error" class="register__span-error">{{ error }}</span>
+    </fieldset>
+    
+    <button type="submit" class="register__button" [disabled]="registerForm.invalid">Completar</button>
+    
+    <div class="register__signIn">
+      <a type="button" class="register__signIn-register" (click)="cancel()">Cancelar</a>
+    </div>
+  </form>
+</div>

@@ -27,7 +27,7 @@ export class AdminManagmentComponent {
   ];
 
   editarUsuario(usuario: any) {
-    
+    this.router.navigate(['/edit-user']);
   
   }
 
@@ -40,6 +40,6 @@ export class AdminManagmentComponent {
   }
 
   agregarUsuario() {
-    this.router.navigate(['/request-providers']);
+    this.router.navigate(['/add-user']);
   }
 }

@@ -1,0 +1,136 @@
+.register__form {
+    display: flex;
+    background: var(--color-light);
+    flex-direction: column;
+    min-width: 400px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    margin: 0 auto;
+}
+
+.register__title {
+    color: var(--color-primary);
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.register__fieldset {
+    border: none;
+    padding: 0;
+    margin: 0 auto;
+    width: 90%;
+}
+
+.register__legend {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.register__label {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+
+.register__input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    outline: none;
+    border-radius: 15px;
+    box-sizing: border-box;
+    box-shadow: 0px 3px 3px -1px rgba(0, 0, 0, 0.25);
+
+}
+
+.register__button {
+    margin: 20px auto;
+    padding: 10px 20px;
+    width: 90%;
+    background-color: var(--color-primary);
+    color: var(--color-light);
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 16px;
+    box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.25);
+    transition: background 0.3s ease-out;
+}
+
+.register__button:disabled {
+    background: #707070d3;
+    cursor: not-allowed
+}
+
+.register__span-error {
+    color: red;
+    font-size: 13px;
+}
+
+.register__signIn {
+    margin: 0 auto;
+    display: flex;
+    gap: 4px;
+}
+
+.register__signIn-register {
+    text-decoration: none;
+    color: var(--color-secondary);
+    cursor: pointer;
+}
+
+.password-strength {
+    margin-top: 10px;
+}
+
+.strength-bar {
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.strength-0 {
+    display: none;
+    width: 0%;
+}
+
+.strength-1 {
+    width: 20%;
+    background-color: red;
+    color: red;
+}
+
+.strength-2 {
+    width: 40%;
+    background-color: orange;
+    color: orange;
+}
+
+.strength-3 {
+    width: 60%;
+    background-color: rgb(149, 221, 149);
+    color: rgb(135, 214, 135);
+}
+
+.strength-4 {
+    width: 80%;
+    background-color: rgb(90, 221, 90);
+    color: rgb(90, 221, 90);
+}
+
+.strength-5 {
+    width: 100%;
+    background-color: green;
+    color: green;
+}
+
+.strength-text {
+    background-color: transparent !important;
+    margin-top: 5px;
+    font-size: 14px;
+}
