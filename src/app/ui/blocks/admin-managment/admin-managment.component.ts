@@ -40,6 +40,6 @@ export class AdminManagmentComponent {
   }
 
   agregarUsuario() {
-    this.router.navigate(['/request-providers']);
+    this.router.navigate(['/add-user']);
   }
 }

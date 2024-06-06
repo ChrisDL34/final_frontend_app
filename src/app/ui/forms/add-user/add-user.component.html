@@ -1,0 +1,56 @@
+<div class="register__container">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="register__form">
+    <h1 class="register__title">Agregar Usuario</h1>
+    <fieldset class="register__fieldset">
+      <label class="register__label">
+        <span class="register__span">Username</span>
+        <input type="text" formControlName="username" class="register__input" [class.error]="registerForm.get('username')?.invalid && registerForm.get('username')?.touched">
+      </label>
+      <span *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched" class="register__span-error">
+        El username debe tener al menos 3 caracteres.
+      </span>
+      
+      <label class="register__label">
+        <span class="register__span">Correo electrónico</span>
+        <input type="email" formControlName="email" class="register__input" [class.error]="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+      </label>
+      <span *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="register__span-error">
+        Introduzca una dirección de correo electrónico válida.
+      </span>
+      
+      <label class="register__label">
+        <span class="register__span">Contraseña</span>
+        <input type="password" formControlName="password" class="register__input" (input)="passwordStrength = evaluatePasswordStrength(registerForm.get('password')?.value)">
+      </label>
+      <div class="password-strength">
+        <div [class]="'strength-bar strength-' + passwordStrength"></div>
+        <span [class]="'strength-text strength-' + passwordStrength">{{ getPasswordStrengthDescription(passwordStrength) }}</span>
+      </div>
+      
+      <label class="register__label">
+        <span class="register__span">Repita la contraseña</span>
+        <input type="password" formControlName="repeatPassword" class="register__input">
+      </label>
+      <span *ngIf="registerForm.hasError('passwordMismatch')" class="register__span-error">
+        Las contraseñas no coinciden.
+      </span>
+      
+      <label class="register__label">
+        <span class="register__span">ROL</span>
+        <select formControlName="role" class="register__input">
+          <option value="invitado">Invitado</option>
+          <option value="administrador">Administrador</option>
+          <option value="proveedor">Proveedor</option>
+        </select>
+      </label>
+      
+      <span *ngIf="error" class="register__span-error">{{ error }}</span>
+    </fieldset>
+    
+    <button type="submit" class="register__button" [disabled]="registerForm.invalid">Agregar</button>
+    
+    <div class="register__signIn">
+      <a type="button" class="register__signIn-register" (click)="cancel()">Cancelar</a>
+    </div>
+  </form>
+</div>
