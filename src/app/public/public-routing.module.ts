@@ -12,7 +12,7 @@ const routes: Routes = [
   children:[
     {
       path:'',
-       component: AdminManagmentContainerComponent, 
+       component: AdminManagmentContainerComponent,
        outlet: 'main'
     }
   ],
@@ -23,7 +23,7 @@ const routes: Routes = [
   children:[
     {
       path:'',
-       component: RequestProviderContainerComponent, 
+       component: RequestProviderContainerComponent,
        outlet: 'main'
     }
   ],
