@@ -1,0 +1,83 @@
+.container {
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .table-container {
+    height: 550px;
+    overflow-y: auto;
+    position: relative;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  thead {
+    position: sticky;
+    top: 0;
+    background-color: #136696;
+    color: white;
+    z-index: 1;
+  }
+  
+  th,
+  td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  th {
+    background-color: #136696;
+    color: white;
+    text-align: center;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  tr:nth-child(odd) {
+    background-color: #f1f5ff;
+  }
+  
+  .actions button {
+    padding: 8px 16px;
+    background-color: #136696;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin: 2px;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  .actions button:hover {
+    background-color: #0d4f72;
+  }
+  
+  .add-user-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #136696;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .add-user-button:hover {
+    background-color: #45a098;
+  }
+  .buttton_container{
+    text-align: center;
+  }
+  
