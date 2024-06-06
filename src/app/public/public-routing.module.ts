@@ -5,6 +5,7 @@ import { AdminManagmentContainerComponent } from '../containers/admin-managment-
 import { RequestProviderContainerComponent } from '../containers/request-provider-container/request-provider-container.component';
 import { AddUserContainerComponent } from '../containers/add-user-container/add-user-container.component';
 import { EditUserContainerComponent } from '../containers/edit-user-container/edit-user-container.component';
+import { UserContainerComponent } from '../containers/user-container/user-container.component';
 
 const routes: Routes = [
 
@@ -14,7 +15,7 @@ const routes: Routes = [
   children:[
     {
       path:'',
-       component: AdminManagmentContainerComponent,
+       component: UserContainerComponent,
        outlet: 'main'
     }
   ],
