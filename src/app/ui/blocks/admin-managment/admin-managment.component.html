@@ -1,36 +1,35 @@
 
 <div class="container">
-   
-    <div class="table-container">
-        <table>
-            <thead>
-                <tr>
-                    <th>Username</th>
-                    <th>Email</th>
-                    <th>Rol</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let usuario of usuarios">
-                    <td>{{ usuario.username }}</td>
-                    <td>{{ usuario.email }}</td>
-                    <td>{{ usuario.rol }}</td>
-                    <td class="actions">
-                       
-                        <button (click)="editarUsuario(usuario)">Editar</button>
-                        <button (click)="eliminarUsuario(usuario)">Eliminar</button>
-                        <button *ngIf="usuario.rol === 'provider'" (click)="pedidoUsuario(usuario)">Pedido</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-       
-    </div>
-    
+
+  <div class="table-container">
+      <table>
+          <thead>
+              <tr>
+                  <th>Username</th>
+                  <th>Email</th>
+                  <th>Rol</th>
+                  <th>Acciones</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let usuario of users">
+                  <td>{{ usuario.username }}</td>
+                  <td>{{ usuario.email }}</td>
+                  <td>{{ usuario.role }}</td>
+                  <td class="actions">
+
+                      <button (click)="editarUsuario(usuario)">Editar</button>
+                      <button (click)="eliminarUsuario(usuario)">Eliminar</button>
+                      <button *ngIf="usuario.role === 'SUPPLIER'" (click)="pedidoUsuario(usuario)">Pedido</button>
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+
+  </div>
+
 
 </div>
 <div class="buttton_container">
-    <a class="add-user-button" (click)="agregarUsuario()">Agregar Usuario</a>
+  <a class="add-user-button" (click)="agregarUsuario()">Agregar Usuario</a>
 </div>
-

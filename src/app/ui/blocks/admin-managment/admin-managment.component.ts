@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from '../../../core/models/users.model';
 
 @Component({
   selector: 'app-admin-managment',
@@ -10,29 +11,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./admin-managment.component.css']
 })
 export class AdminManagmentComponent {
+
   constructor(private router: Router) {}
 
-  usuarios = [
-    { username: 'john_doe', email: 'john@example.com', rol: 'admin' },
-    { username: 'jane_smith', email: 'jane@example.com', rol: 'user' },
-    { username: 'jane_smith', email: 'jane@example.com', rol: 'provider' },
-    { username: 'jane_smith', email: 'jane@example.com', rol: 'provider' },
-    { username: 'jane_smith', email: 'jane@example.com', rol: 'provider' },
-    { username: 'jane_smith', email: 'jane@example.com', rol: 'provider' },
-    { username: 'jane_smith', email: 'jane@example.com', rol: 'provider' },
-    { username: 'jane_smith', email: 'jane@example.com', rol: 'provider' },
-    { username: 'jane_smith', email: 'jane@example.com', rol: 'provider' },
-    { username: 'jane_smith', email: 'jane@example.com', rol: 'provider' },
-    { username: 'jane_smith', email: 'jane@example.com', rol: 'provider' }
-  ];
+  @Input()
+  users!: User[] | null;
 
   editarUsuario(usuario: any) {
     this.router.navigate(['/edit-user']);
-  
+
   }
 
   eliminarUsuario(usuario: any) {
-    
+
   }
 
   pedidoUsuario(usuario: any) {
@@ -43,3 +34,5 @@ export class AdminManagmentComponent {
     this.router.navigate(['/add-user']);
   }
 }
+
+
