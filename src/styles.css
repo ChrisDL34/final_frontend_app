@@ -6,6 +6,3 @@
     font-family: 'Poppins', sans-serif;
 }
 
-main {
-    min-height: calc(100vh - 64px - 188px);
-}
