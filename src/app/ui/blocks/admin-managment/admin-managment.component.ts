@@ -27,7 +27,7 @@ export class AdminManagmentComponent {
   ];
 
   editarUsuario(usuario: any) {
-    
+    this.router.navigate(['/edit-user']);
   
   }
 

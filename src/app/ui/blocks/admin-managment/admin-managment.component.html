@@ -17,6 +17,7 @@
                     <td>{{ usuario.email }}</td>
                     <td>{{ usuario.rol }}</td>
                     <td class="actions">
+                       
                         <button (click)="editarUsuario(usuario)">Editar</button>
                         <button (click)="eliminarUsuario(usuario)">Eliminar</button>
                         <button *ngIf="usuario.rol === 'provider'" (click)="pedidoUsuario(usuario)">Pedido</button>

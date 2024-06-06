@@ -4,6 +4,7 @@ import { LayoutMainComponent } from '../ui/layouts/layout-main/layout-main.compo
 import { AdminManagmentContainerComponent } from '../containers/admin-managment-container/admin-managment-container.component';
 import { RequestProviderContainerComponent } from '../containers/request-provider-container/request-provider-container.component';
 import { AddUserContainerComponent } from '../containers/add-user-container/add-user-container.component';
+import { EditUserContainerComponent } from '../containers/edit-user-container/edit-user-container.component';
 
 const routes: Routes = [
 
@@ -39,7 +40,19 @@ const routes: Routes = [
        outlet: 'main'
     }
   ],
+},
+{
+  path:'edit-user',
+  component: LayoutMainComponent,
+  children:[
+    {
+      path:'',
+       component: EditUserContainerComponent,
+       outlet: 'main'
+    }
+  ],
 }
+
 
 
 ];
