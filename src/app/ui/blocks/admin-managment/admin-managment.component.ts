@@ -11,29 +11,14 @@ import { User } from '../../../core/models/users.model';
   styleUrls: ['./admin-managment.component.css']
 })
 export class AdminManagmentComponent {
+
+  constructor(private router: Router) {}
+
   @Input()
   users!: User[] | null;
-}
-
-  /*
-
-
-  usuarios = [
-    { username: 'john_doe', email: 'john@example.com', rol: 'admin' },
-    { username: 'jane_smith', email: 'jane@example.com', rol: 'user' },
-    { username: 'jane_smith', email: 'jane@example.com', rol: 'provider' },
-    { username: 'jane_smith', email: 'jane@example.com', rol: 'provider' },
-    { username: 'jane_smith', email: 'jane@example.com', rol: 'provider' },
-    { username: 'jane_smith', email: 'jane@example.com', rol: 'provider' },
-    { username: 'jane_smith', email: 'jane@example.com', rol: 'provider' },
-    { username: 'jane_smith', email: 'jane@example.com', rol: 'provider' },
-    { username: 'jane_smith', email: 'jane@example.com', rol: 'provider' },
-    { username: 'jane_smith', email: 'jane@example.com', rol: 'provider' },
-    { username: 'jane_smith', email: 'jane@example.com', rol: 'provider' }
-  ];
 
   editarUsuario(usuario: any) {
-
+    this.router.navigate(['/edit-user']);
 
   }
 
@@ -46,16 +31,8 @@ export class AdminManagmentComponent {
   }
 
   agregarUsuario() {
-    this.router.navigate(['/request-providers']);
+    this.router.navigate(['/add-user']);
   }
-
 }
-<div class="buttton_container">
-    <a class="add-user-button" (click)="agregarUsuario()">Agregar Usuario</a>
-</div>
 
-                        <button (click)="editarUsuario(usuario)">Editar</button>
-                        <button (click)="eliminarUsuario(usuario)">Eliminar</button>
-                        <button *ngIf="usuario.rol === 'provider'" (click)="pedidoUsuario(usuario)">Pedido</button>
 
-*/
