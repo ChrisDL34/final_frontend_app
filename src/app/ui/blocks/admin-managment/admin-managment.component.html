@@ -20,7 +20,7 @@
 
                       <button (click)="editUser(usuario)">Editar</button>
                       <button (click)="deleteUser(usuario.userId)">Eliminar</button>
-                      <button *ngIf="usuario.role === 'SUPPLIER'" (click)="buyBooks()">Pedido</button>
+                      <button *ngIf="usuario.role === 'SUPPLIER'" (click)="buyBooks(usuario.userId)">Pedido</button>
                   </td>
               </tr>
           </tbody>
