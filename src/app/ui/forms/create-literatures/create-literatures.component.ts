@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
@@ -10,30 +10,22 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
   styleUrls: ['./create-literatures.component.css']
 })
 export class CreateLiteraturesComponent {
-  literatureForm: FormGroup;
-  selectedType: string = '';
+  @Input() literatureForm: FormGroup;
+  @Input() onSubmit: () => void;
+  @Input() selectedType: string = '';
+  mostrarModal: boolean = false;
 
-  constructor(private formBuilder: FormBuilder) {
-    this.literatureForm = this.formBuilder.group({
-      type: ['', Validators.required],
-      title: ['', Validators.required],
-      author: ['', Validators.required],
-      basePrice: [0, Validators.required],
-      quantity: [0, Validators.required],
-      suggestedAge: [0],
-      genre: [''],
-      pages: [0],
-      knowledgeArea: ['']
-    });
+  constructor() {}
+
+  cerrarModal() {
+    this.literatureForm.reset();
+    this.mostrarModal = false;
+    this.selectedType = '';
   }
-
-  onSubmit() {
-    if (this.literatureForm.valid) {
   
-      console.log(this.literatureForm.value);
-    }
+  showModal() {
+    this.mostrarModal = true;
   }
-
 
   onTypeChange(event: Event) {
     const target = event.target as HTMLSelectElement;
