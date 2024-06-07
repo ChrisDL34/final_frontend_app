@@ -1,11 +1,11 @@
 import { Injectable } from "@angular/core";
-import { AddUserResponse } from "../models/users.model";
+import { AddUserResponse, UpdateUserResponse } from "../models/users.model";
 
 @Injectable({
   providedIn: 'root'
 })
-export class ApiToRegisterUserMapper{
-  map(response: any): AddUserResponse{
+export class ApiToUpdateUserMapper{
+  map(response: any): UpdateUserResponse{
     return{
       username: response.username,
       email: response.email,

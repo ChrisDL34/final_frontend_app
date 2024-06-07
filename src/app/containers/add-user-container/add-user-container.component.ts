@@ -37,6 +37,7 @@ export class AddUserContainerComponent {
         response => {
           console.log('User successfully created', response);
           this.registerForm.reset();
+          this.router.navigate(['/admin-managment']);
         },
         error => {
           this.error = 'Failed to create user';

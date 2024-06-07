@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subscription, tap } from 'rxjs';
-import { AddUserState } from '../../core/states/add-user.state';
-import { CreateUserService } from '../../core/services/create-new-user.service';
-import { RoleType } from '../../core/models/users.model';
-import { AddUserResponse, AddUserRequest } from '../../core/models/add-user.model';
+import { UserService } from '../../core/services/user.service';
+import { AddUserRequest, AddUserResponse, RoleType } from '../../core/models/users.model';
 
 @Injectable({
   providedIn: 'root',
@@ -12,8 +10,7 @@ export class AddUserContainerFacade {
   private subscription: Subscription = new Subscription();
 
   constructor(
-    private userState: AddUserState,
-    private storeUser: CreateUserService
+    private userService: UserService
   ) {}
 
   initSubscription(): void {
@@ -36,6 +33,6 @@ export class AddUserContainerFacade {
       password,
       role
     };
-    return this.storeUser.saveUser(userRegisterForm);
+    return this.userService.saveUser(userRegisterForm);
   }
 }
