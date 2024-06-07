@@ -2,6 +2,12 @@
   <form [formGroup]="literatureForm" (ngSubmit)="onSubmit()" class="register__form">
     <h1 class="register__title">Crear Literatura</h1>
     <fieldset class="register__fieldset">
+      
+      <label class="register__label">
+        <span class="register__span">ID del Proveedor:</span>
+        <input type="text" formControlName="supplierId" class="register__input">
+      </label>
+      
       <label class="register__label">
         <span class="register__span">Tipo de Literatura:</span>
         <select formControlName="type" (change)="onTypeChange($event)" class="register__input">
