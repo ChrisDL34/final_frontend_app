@@ -60,7 +60,9 @@ export class RequestProviderComponent implements OnInit {
   agregarAlCarrito(libro: Libro) {
     const itemExistente = this.carrito.find(item => item.libro.id === libro.id);
     if (itemExistente) {
-      itemExistente.cantidad++;
+      if (itemExistente.cantidad < libro.stock) {
+        itemExistente.cantidad++;
+      }
     } else {
       this.carrito.push({ libro, cantidad: 1 });
     }
@@ -105,13 +107,29 @@ export class RequestProviderComponent implements OnInit {
             setTimeout(() => {
               this.mostrarModalConfirmacion = false;
             }, 2000);
+            // Recargar los libros después de confirmar la compra
+            this.recargarLibros();
           }
-          
         },
         (error) => {
           console.error('Error al confirmar la compra:', error);
         }
       );
+    }
+  }
+
+  recargarLibros() {
+    if (this.supplierId) {
+      this.userService.getSupplierBooks(this.supplierId).subscribe((libros) => {
+        this.libros = libros.map(libro => ({
+          id: libro.id,
+          titulo: libro.title,
+          autor: libro.author,
+          tipo: libro.itemType,
+          precio: libro.sellPrice,
+          stock: libro.stock
+        }));
+      });
     }
   }
 
