@@ -35,7 +35,7 @@
         {{ item.libro.titulo }} - Cantidad: {{ item.cantidad }}
       </li>
     </ul>
-    <button class="btn-enviar" (click)="abrirModal()">Enviar solicitud</button>
+    <button class="btn-enviar" (click)="enviarSolicitud()">Enviar solicitud</button>
   </div>
   <div class="modal" [class.show]="mostrarModal">
     <div class="modal-content">
@@ -46,12 +46,11 @@
         <div *ngFor="let item of respuestaSolicitud.itemsList">
           <p>{{ item.title }} - Precio: {{ item.price | currency }}</p>
         </div>
+        <button class="btn-confirm" (click)="confirmarCompra(true)">Confirmar compra</button>
+        <button class="btn-cancel" (click)="confirmarCompra(false)">Cancelar compra</button>
       </div>
       <ng-template #loading>
-        <h2>Total a pagar</h2>
-        <p>El total a pagar es: {{ totalCarrito() | currency }}</p>
-        <button class="btn-close" (click)="cerrarModal()">Cerrar</button>
-        <button class="btn-confirm" (click)="enviarSolicitud()">Confirmar compra</button>
+        <h2>Enviando solicitud...</h2>
       </ng-template>
     </div>
   </div>

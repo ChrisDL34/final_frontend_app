@@ -88,26 +88,48 @@ export class RequestProviderComponent implements OnInit {
     return this.carrito.reduce((total, item) => total + item.libro.precio * item.cantidad, 0);
   }
 
-  enviarSolicitud() {
-    if (this.supplierId) {
-      const items = this.carrito.map(item => ({
-        id: item.libro.id,
-        amount: item.cantidad
-      }));
+  confirmarCompra(confirmado: boolean) {
+    if (this.respuestaSolicitud && this.respuestaSolicitud.quoteId) {
+      const request = {
+        quoteId: this.respuestaSolicitud.quoteId,
+        confirmed: confirmado
+      };
   
-      this.userService.requestQuote(this.supplierId, { itemIdList: items }).subscribe(
+      this.userService.confirmQuote(request).subscribe(
         (response) => {
-          this.respuestaSolicitud = response;
-          console.log('Solicitud enviada:', response);
-          this.carrito = [];
-          this.abrirModal(); // Cambiar a this.abrirModal() en lugar de this.mostrarModal = true
+          console.log('Compra confirmada:', response);
+          this.cerrarModal();
+          // Realizar otras acciones necesarias después de confirmar la compra
         },
         (error) => {
-          console.error('Error al enviar la solicitud:', error);
+          console.error('Error al confirmar la compra:', error);
         }
       );
     }
   }
+
+
+ enviarSolicitud() {
+  if (this.supplierId) {
+    const items = this.carrito.map(item => ({
+      id: item.libro.id,
+      amount: item.cantidad
+    }));
+
+    this.userService.requestQuote(this.supplierId, { itemIdList: items }).subscribe(
+      (response) => {
+        this.respuestaSolicitud = response;
+        console.log('Solicitud enviada:', response);
+        this.carrito = [];
+        this.abrirModal();
+      },
+      (error) => {
+        console.error('Error al enviar la solicitud:', error);
+      }
+    );
+  }
+}
+
   cancel() {
     this.router.navigate(['/admin-managment']);
   }
