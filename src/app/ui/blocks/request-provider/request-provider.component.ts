@@ -33,6 +33,7 @@ export class RequestProviderComponent implements OnInit {
   mostrarModal = false;
   supplierId: string | null = null;
   respuestaSolicitud: any = null;
+  mostrarModalConfirmacion = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -81,7 +82,7 @@ export class RequestProviderComponent implements OnInit {
 
   cerrarModal() {
     this.mostrarModal = false;
-    this.respuestaSolicitud = null; // Limpiar la respuesta al cerrar el modal
+    this.respuestaSolicitud = null; 
   }
 
   totalCarrito() {
@@ -94,12 +95,18 @@ export class RequestProviderComponent implements OnInit {
         quoteId: this.respuestaSolicitud.quoteId,
         confirmed: confirmado
       };
-  
+
       this.userService.confirmQuote(request).subscribe(
         (response) => {
           console.log('Compra confirmada:', response);
           this.cerrarModal();
-          // Realizar otras acciones necesarias después de confirmar la compra
+          if (confirmado) {
+            this.mostrarModalConfirmacion = true;
+            setTimeout(() => {
+              this.mostrarModalConfirmacion = false;
+            }, 2000);
+          }
+          
         },
         (error) => {
           console.error('Error al confirmar la compra:', error);
@@ -107,7 +114,6 @@ export class RequestProviderComponent implements OnInit {
       );
     }
   }
-
 
  enviarSolicitud() {
   if (this.supplierId) {
