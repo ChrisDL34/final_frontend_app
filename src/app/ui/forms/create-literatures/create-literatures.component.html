@@ -1,0 +1,63 @@
+<div class="register__container">
+  <form [formGroup]="literatureForm" (ngSubmit)="onSubmit()" class="register__form">
+    <h1 class="register__title">Crear Literatura</h1>
+    <fieldset class="register__fieldset">
+      <label class="register__label">
+        <span class="register__span">Tipo de Literatura:</span>
+        <select formControlName="type" (change)="onTypeChange($event)" class="register__input">
+          <option value="">Selecciona un tipo</option>
+          <option value="novela">Novela</option>
+          <option value="libro">Libro</option>
+        </select>
+      </label>
+
+      <div *ngIf="selectedType">
+        <label class="register__label">
+          <span class="register__span">Título:</span>
+          <input type="text" formControlName="title" class="register__input">
+        </label>
+
+        <label class="register__label">
+          <span class="register__span">Autor:</span>
+          <input type="text" formControlName="author" class="register__input">
+        </label>
+
+        <label class="register__label">
+          <span class="register__span">Precio Base:</span>
+          <input type="number" formControlName="basePrice" class="register__input">
+        </label>
+
+        <label class="register__label">
+          <span class="register__span">Cantidad:</span>
+          <input type="number" formControlName="quantity" class="register__input">
+        </label>
+
+        <div *ngIf="selectedType === 'novela'">
+          <label class="register__label">
+            <span class="register__span">Edad Sugerida:</span>
+            <input type="number" formControlName="suggestedAge" class="register__input">
+          </label>
+
+          <label class="register__label">
+            <span class="register__span">Género:</span>
+            <input type="text" formControlName="genre" class="register__input">
+          </label>
+        </div>
+
+        <div *ngIf="selectedType === 'libro'">
+          <label class="register__label">
+            <span class="register__span">Páginas:</span>
+            <input type="number" formControlName="pages" class="register__input">
+          </label>
+
+          <label class="register__label">
+            <span class="register__span">Área de Conocimiento:</span>
+            <input type="text" formControlName="knowledgeArea" class="register__input">
+          </label>
+        </div>
+      </div>
+    </fieldset>
+
+    <button type="submit" class="register__button">Crear</button>
+  </form>
+</div>
