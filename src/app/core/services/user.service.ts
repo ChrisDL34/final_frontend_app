@@ -8,6 +8,7 @@ import { URL_RESOURCES } from '../resources/url.resource';
 import { ApiToGetAllUsersMapper } from '../mappers/api-to-get-users.mapper';
 import { ApiToRegisterUserMapper } from '../mappers/api-to-register-user.mapper';
 import { ApiToUpdateUserMapper } from '../mappers/api-to-update-user.mapper';
+import { Book } from '../models/book.model';
 @Injectable({
   providedIn: 'root',
 })
@@ -49,4 +50,21 @@ export class UserService{
     return this.httpService
     .delete(url);
   }
+
+  getSupplierBooks(supplierId: string): Observable<Book[]> {
+    const url = `${URL_RESOURCES.getSupplierBooks}/${supplierId}`;
+    return this.httpService.get<any[]>(url).pipe(
+      map((response: any[]) => {
+        return response.map((item) => ({
+          title: item.title,
+          author: item.author,
+          itemType: item.itemType,
+          sellPrice: item.sellPrice,
+          stock: item.stock,
+        }) as Book);
+      })
+    );
+  }
+  
+
 }

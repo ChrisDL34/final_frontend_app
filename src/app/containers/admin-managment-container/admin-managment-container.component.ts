@@ -78,8 +78,8 @@ export class AdminManagmentContainerComponent implements OnInit, OnDestroy {
     this.router.navigate(['/add-user']);
   }
 
-  buyBooks=():void=>{
-    this.router.navigate(['/request-providers']);
+  buyBooks = (supplierId: string): void => {
+    this.router.navigate(['/request-providers', supplierId]);
   }
 
   editUser=(user: User):void=>{

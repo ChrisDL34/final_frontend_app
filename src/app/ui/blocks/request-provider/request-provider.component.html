@@ -1,31 +1,32 @@
 <body>
     <div class="container">
         <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Título del libro</th>
-                        <th>Autor</th>
-                        <th>Tipo</th>
-                        <th>Precio</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let libro of libros">
-                        <td>{{ libro.titulo }}</td>
-                        <td>{{ libro.autor }}</td>
-                        <td>{{ libro.tipo }}</td>
-                        <td>{{ libro.precio | currency }}</td>
-                        <td class="actions">
-                            <button (click)="agregarAlCarrito(libro)">+</button>
-                            <button (click)="quitarDelCarrito(libro)">-</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+          <table>
+            <thead>
+              <tr>
+                <th>Título del libro</th>
+                <th>Autor</th>
+                <th>Tipo</th>
+                <th>Precio</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let libro of libros">
+                <td>{{ libro.titulo }}</td>
+                <td>{{ libro.autor }}</td>
+                <td>{{ libro.tipo }}</td>
+                <td>{{ libro.precio | currency }}</td>
+                <td>{{ libro.stock }}</td> 
+                <td class="actions">
+                  <button (click)="agregarAlCarrito(libro)">+</button>
+                  <button (click)="quitarDelCarrito(libro)">-</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-    </div>
+      </div>
     <div class="carrito-container">
         <h2>Carrito de compras</h2>
         <ul>
