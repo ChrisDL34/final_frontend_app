@@ -1,12 +1,16 @@
 import { CommonModule, NgForOf } from '@angular/common';
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router'; 
+import { UserService } from '../../../core/services/user.service';
+import { Book } from '../../../core/models/book.model';
+
 
 interface Libro {
   titulo: string;
   autor: string;
   tipo: string;
   precio: number;
+  stock: number; 
 }
 
 interface ItemCarrito {
@@ -23,27 +27,32 @@ interface ItemCarrito {
 })
 export class RequestProviderComponent {
 
-  constructor( private router: Router) {
-  }
-
-  libros: Libro[] = [
-    {
-      titulo: 'El ingenioso hidalgo Don Quijote de la Mancha',
-      autor: 'Miguel de Cervantes',
-      tipo: 'Novela',
-      precio: 25.00
-    },
-    {
-      titulo: 'Cien años de soledad',
-      autor: 'Gabriel García Márquez',
-      tipo: 'Novela',
-      precio: 20.00
-    }
-    // ... resto de los libros ...
-  ];
-
+  libros: Libro[] = [];
   carrito: ItemCarrito[] = [];
   mostrarModal = false;
+  supplierId: string | null = null;
+
+   constructor(
+    private route: ActivatedRoute,
+    private userService: UserService,
+    private router: Router
+  ) {}
+
+  ngOnInit() {
+    this.supplierId = this.route.snapshot.paramMap.get('supplierId');
+    if (this.supplierId) {
+      this.userService.getSupplierBooks(this.supplierId).subscribe((libros) => {
+        this.libros = libros.map(libro => ({
+          titulo: libro.title,
+          autor: libro.author,
+          tipo: libro.itemType,
+          precio: libro.sellPrice,
+          stock: libro.stock 
+        }));
+      });
+    }
+  }
+
 
   agregarAlCarrito(libro: Libro) {
     const itemExistente = this.carrito.find(item => item.libro === libro);
@@ -63,7 +72,6 @@ export class RequestProviderComponent {
       }
     }
   }
-
   abrirModal() {
     this.mostrarModal = true;
   }

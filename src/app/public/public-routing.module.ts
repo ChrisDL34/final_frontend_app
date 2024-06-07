@@ -21,13 +21,13 @@ const routes: Routes = [
   ],
 },
 {
-  path:'request-providers',
+  path: 'request-providers/:supplierId', 
   component: LayoutMainComponent,
-  children:[
+  children: [
     {
-      path:'',
-       component: RequestProviderContainerComponent,
-       outlet: 'main'
+      path: '',
+      component: RequestProviderContainerComponent,
+      outlet: 'main'
     }
   ],
 },
