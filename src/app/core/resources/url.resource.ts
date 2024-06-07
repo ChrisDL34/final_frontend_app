@@ -5,6 +5,10 @@ export const URL_RESOURCES={
   createUser: `${environment.apiUrl}/User/CreateUser`,
   updateUser: `${environment.apiUrl}/User/UpdateUser`,
   deleteUser: `${environment.apiUrl}/User/DeleteUserById`,
-  getSupplierBooks: `${environment.apiUrl}/SupplierItems/GetAll` ,
-  requestQuote: `${environment.apiUrl}/Quote/request/{supplierId}`
+  getSupplierBooks: `${environment.apiUrl}/SupplierItems/GetAll`,
+  requestQuote: `${environment.apiUrl}/Quote/request/{supplierId}`,
+  token:"https://pinguinera-module-auth.onrender.com/api/v1/token/refresh",
+
+  adminRefreshToken:"b04251bf-42f4-4f66-9706-554c3fc48a31"
+
 }

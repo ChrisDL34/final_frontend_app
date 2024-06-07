@@ -66,10 +66,8 @@ export class UserService{
       })
     );
   }
-
-  requestQuote(supplierId: string, items: { itemIdList: { id: string; amount: number }[] }): Observable<any> {
+requestQuote(supplierId: string, items: { itemIdList: { id: string; amount: number }[] }): Observable<any> {
     const url = `${URL_RESOURCES.requestQuote.replace('{supplierId}', supplierId)}`;
     return this.httpService.post(url, JSON.stringify(items));
   }
-
 }
