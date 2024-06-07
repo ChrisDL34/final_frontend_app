@@ -18,9 +18,11 @@ export class CreateLiteraturesComponent {
   constructor() {}
 
   cerrarModal() {
+    this.literatureForm.reset();
     this.mostrarModal = false;
+    this.selectedType = '';
   }
-
+  
   showModal() {
     this.mostrarModal = true;
   }
