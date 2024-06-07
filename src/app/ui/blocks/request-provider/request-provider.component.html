@@ -35,26 +35,44 @@
         {{ item.libro.titulo }} - Cantidad: {{ item.cantidad }}
       </li>
     </ul>
-    <button class="btn-enviar" (click)="abrirModal()">Enviar solicitud</button>
+    <button class="btn-enviar" (click)="enviarSolicitud()">Enviar solicitud</button>
   </div>
+
+
   <div class="modal" [class.show]="mostrarModal">
     <div class="modal-content">
       <div *ngIf="respuestaSolicitud; else loading">
         <h2>Solicitud enviada con éxito</h2>
-        <p>Código de Cotización: {{ respuestaSolicitud.quoteId }}</p>
-        <p>Valor Total de la Cotización: {{ respuestaSolicitud.totalQuoteValue | currency }}</p>
-        <div *ngFor="let item of respuestaSolicitud.itemsList">
-          <p>{{ item.title }} - Precio: {{ item.price | currency }}</p>
+        <div class="quote-info">
+          <p><strong>Código de Cotización:</strong> {{ respuestaSolicitud.quoteId }}</p>
+          <p><strong>Valor Total de la Cotización:</strong> {{ respuestaSolicitud.totalQuoteValue | currency }}</p>
+        </div>
+        <div class="items-list">
+          <h3>Literaturas:</h3>
+          <ul>
+            <li *ngFor="let item of respuestaSolicitud.itemsList">
+              {{ item.title }} - Precio: {{ item.price | currency }}
+            </li>
+          </ul>
+        </div>
+        <div class="modal-actions">
+          <button class="btn-confirm" (click)="confirmarCompra(true)">Confirmar compra</button>
+          <button class="btn-cancel" (click)="confirmarCompra(false)">Cancelar compra</button>
         </div>
       </div>
       <ng-template #loading>
-        <h2>Total a pagar</h2>
-        <p>El total a pagar es: {{ totalCarrito() | currency }}</p>
-        <button class="btn-close" (click)="cerrarModal()">Cerrar</button>
-        <button class="btn-confirm" (click)="enviarSolicitud()">Confirmar compra</button>
+        <h2>Enviando solicitud...</h2>
       </ng-template>
     </div>
   </div>
+
+
+ <div class="modal-confirmation" *ngIf="mostrarModalConfirmacion">
+    <h3>Compra confirmada</h3>
+  </div>
+
+
+
   <div class="register__signIn">
     <a type="button" class="register__signIn-register" (click)="cancel()">Cancelar</a>
   </div>

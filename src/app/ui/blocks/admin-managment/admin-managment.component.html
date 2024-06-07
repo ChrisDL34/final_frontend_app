@@ -1,45 +1,45 @@
 
 <div class="container">
 
-  <div class="table-container">
-      <table>
-          <thead>
-              <tr>
-                  <th>Usuario</th>
-                  <th>Correo</th>
-                  <th>Rol</th>
-                  <th>Acciones</th>
-              </tr>
-          </thead>
-          <tbody>
-              <tr *ngFor="let usuario of users">
-                  <td>{{ usuario.username }}</td>
-                  <td>{{ usuario.email }}</td>
-                  <td>{{ usuario.role }}</td>
-                  <td class="actions">
-
-                      <button (click)="editUser(usuario)">Editar</button>
-                      <button (click)="deleteUser(usuario.userId)">Eliminar</button>
-                      <button *ngIf="usuario.role === 'SUPPLIER'" (click)="buyBooks(usuario.userId)">Pedido</button>
-                  </td>
-              </tr>
-          </tbody>
-      </table>
-      <app-modal-element
-      [title]="modalTitle"
-      [message]="modalMessage"
-      [closeButtonMessage]="modalCloseButtonMessage"
-      [confirmButtonMessage]="modalConfirmButtonMessage"
-      [continue]="modalContinueBehavior"
-      [show]="modalIsShown"
-      [continueParams]="modalContinueParams"
-      [close]="modalCloseBehavior"
-      />
-
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Usuario</th>
+                    <th>Correo</th>
+                    <th>Rol</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let usuario of users">
+                    <td>{{ usuario.username }}</td>
+                    <td>{{ usuario.email }}</td>
+                    <td>{{ usuario.role }}</td>
+                    <td class="actions">
+  
+                        <button (click)="editUser(usuario)">Editar</button>
+                        <button (click)="deleteUser(usuario.userId)">Eliminar</button>
+                        <button *ngIf="usuario.role === 'SUPPLIER'" (click)="buyBooks(usuario.userId)">Pedido</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <app-modal-element
+        [title]="modalTitle"
+        [message]="modalMessage"
+        [closeButtonMessage]="modalCloseButtonMessage"
+        [confirmButtonMessage]="modalConfirmButtonMessage"
+        [continue]="modalContinueBehavior"
+        [show]="modalIsShown"
+        [continueParams]="modalContinueParams"
+        [close]="modalCloseBehavior"
+        />
+  
+    </div>
+  
+  
   </div>
-
-
-</div>
-<div class="buttton_container">
-  <a class="add-user-button" (click)="addUser()">Agregar Usuario</a>
-</div>
+  <div class="buttton_container">
+    <a class="add-user-button" (click)="addUser()">Agregar Usuario</a>
+  </div>

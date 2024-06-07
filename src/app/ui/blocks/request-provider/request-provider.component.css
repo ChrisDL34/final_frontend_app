@@ -113,7 +113,84 @@ tr:nth-child(odd) {
     max-width: 400px;
     border-radius: 4px;
     text-align: center;
+    max-height: 80vh;
+    overflow-y: auto;
 }
+
+
+.quote-info {
+    margin-bottom: 20px;
+  }
+
+
+
+  .items-list {
+    max-height: 200px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+  }
+  
+  .items-list h3 {
+    margin-top: 0;
+  }
+  
+  .items-list ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .items-list ul li {
+    padding: 5px 0;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .btn-confirm,
+  .btn-cancel {
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .btn-confirm {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .btn-confirm:hover {
+    background-color: #388E3C;
+  }
+  
+  .btn-cancel {
+    background-color: #f44336;
+    color: white;
+  }
+  
+  .btn-cancel:hover {
+    background-color: #d32f2f;
+  }
+
+
+
+  .modal-confirmation {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px;
+    border-radius: 4px;
+    z-index: 9999;
+  }
+
+  
 .modal-content h3 {
     margin-top: 0;
 }

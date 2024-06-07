@@ -33,6 +33,7 @@ export class RequestProviderComponent implements OnInit {
   mostrarModal = false;
   supplierId: string | null = null;
   respuestaSolicitud: any = null;
+  mostrarModalConfirmacion = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -59,7 +60,9 @@ export class RequestProviderComponent implements OnInit {
   agregarAlCarrito(libro: Libro) {
     const itemExistente = this.carrito.find(item => item.libro.id === libro.id);
     if (itemExistente) {
-      itemExistente.cantidad++;
+      if (itemExistente.cantidad < libro.stock) {
+        itemExistente.cantidad++;
+      }
     } else {
       this.carrito.push({ libro, cantidad: 1 });
     }
@@ -81,33 +84,76 @@ export class RequestProviderComponent implements OnInit {
 
   cerrarModal() {
     this.mostrarModal = false;
-    this.respuestaSolicitud = null; // Limpiar la respuesta al cerrar el modal
+    this.respuestaSolicitud = null; 
   }
 
   totalCarrito() {
     return this.carrito.reduce((total, item) => total + item.libro.precio * item.cantidad, 0);
   }
 
-  enviarSolicitud() {
-    if (this.supplierId) {
-      const items = this.carrito.map(item => ({
-        id: item.libro.id,
-        amount: item.cantidad
-      }));
-  
-      this.userService.requestQuote(this.supplierId, { itemIdList: items }).subscribe(
+  confirmarCompra(confirmado: boolean) {
+    if (this.respuestaSolicitud && this.respuestaSolicitud.quoteId) {
+      const request = {
+        quoteId: this.respuestaSolicitud.quoteId,
+        confirmed: confirmado
+      };
+
+      this.userService.confirmQuote(request).subscribe(
         (response) => {
-          this.respuestaSolicitud = response;
-          console.log('Solicitud enviada:', response);
-          this.carrito = [];
-          this.abrirModal(); // Cambiar a this.abrirModal() en lugar de this.mostrarModal = true
+          console.log('Compra confirmada:', response);
+          this.cerrarModal();
+          if (confirmado) {
+            this.mostrarModalConfirmacion = true;
+            setTimeout(() => {
+              this.mostrarModalConfirmacion = false;
+            }, 2000);
+            // Recargar los libros después de confirmar la compra
+            this.recargarLibros();
+          }
         },
         (error) => {
-          console.error('Error al enviar la solicitud:', error);
+          console.error('Error al confirmar la compra:', error);
         }
       );
     }
   }
+
+  recargarLibros() {
+    if (this.supplierId) {
+      this.userService.getSupplierBooks(this.supplierId).subscribe((libros) => {
+        this.libros = libros.map(libro => ({
+          id: libro.id,
+          titulo: libro.title,
+          autor: libro.author,
+          tipo: libro.itemType,
+          precio: libro.sellPrice,
+          stock: libro.stock
+        }));
+      });
+    }
+  }
+
+ enviarSolicitud() {
+  if (this.supplierId) {
+    const items = this.carrito.map(item => ({
+      id: item.libro.id,
+      amount: item.cantidad
+    }));
+
+    this.userService.requestQuote(this.supplierId, { itemIdList: items }).subscribe(
+      (response) => {
+        this.respuestaSolicitud = response;
+        console.log('Solicitud enviada:', response);
+        this.carrito = [];
+        this.abrirModal();
+      },
+      (error) => {
+        console.error('Error al enviar la solicitud:', error);
+      }
+    );
+  }
+}
+
   cancel() {
     this.router.navigate(['/admin-managment']);
   }
