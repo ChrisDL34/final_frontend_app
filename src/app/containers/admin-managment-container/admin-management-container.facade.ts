@@ -2,17 +2,19 @@ import { Injectable } from '@angular/core';
 import { Observable, Subscription, tap } from 'rxjs';
 import { User } from '../../core/models/users.model';
 import { UserState } from '../../core/states/user.state';
-import { ShowAllUsersService } from '../../core/services/list-all-users.service';
+import { UserService } from '../../core/services/user.service';
+import { SelectedUserState } from '../../core/states/selected-user.state';
 
 @Injectable({
   providedIn: 'root',
 })
-export class UserContainerFacade {
+export class AdminManagementContainerFacade {
   private subscription: Subscription = new Subscription();
 
   constructor(
     private userState: UserState,
-    private showAllUsersService: ShowAllUsersService
+    private selectedUserState: SelectedUserState,
+    private usersService: UserService
   ) {}
 
   initSubcristion(): void {
@@ -23,16 +25,25 @@ export class UserContainerFacade {
   }
 
   users$(): Observable<User[]> {
-    return this.showAllUsersService.getUser();
+    return this.userState.usersData$;
   }
 
   getAllUsers(): void {
     this.subscription.add(
-      this.showAllUsersService
+      this.usersService
         .getUser()
         .pipe(tap((users) => this.userState.setUsers(users)))
         .subscribe()
     );
+  }
+
+  deleteUser(userId: string):Observable<void>{
+    return this.usersService.deleteUser(userId);
+  }
+
+  setSelectedUser(user:User):void{
+    this.selectedUserState.setSelectedUser(user);
+
   }
 
 }

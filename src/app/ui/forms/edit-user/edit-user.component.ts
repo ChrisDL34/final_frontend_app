@@ -1,38 +1,28 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, Input } from '@angular/core';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ModalElementComponent } from '../../elements/modal-element/modal-element.component';
 
 @Component({
   selector: 'app-edit-user',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, ModalElementComponent],
   templateUrl: './edit-user.component.html',
   styleUrls: ['./edit-user.component.css']
 })
 export class EditUserComponent {
-  registerForm: FormGroup;
-  error: string | null = null;
+  @Input() registerForm!: FormGroup;
+  @Input() onSubmit!: () => void;
+  @Input() error: string | null = null;
+  @Input() modalTitle:string;
+  @Input() modalMessage:string;
+  @Input() modalCloseButtonMessage:string;
+  @Input() modalIsShown: boolean;
+  @Input() modalCloseBehavior:()=>void;
 
-  constructor(private formBuilder: FormBuilder, private router: Router) {
-    this.registerForm = this.formBuilder.group({
-      username: ['', [Validators.required, Validators.minLength(3)]],
-      email: ['', [Validators.required, Validators.email]],
-      role: ['', [Validators.required]]
-    });
-  }
 
-  onSubmit() {
-    if (this.registerForm.valid) {
-      const { username, email, role } = this.registerForm.value;
-      // Aquí puedes realizar acciones adicionales con los datos del formulario
-      console.log('Username:', username);
-      console.log('Email:', email);
-      console.log('Role:', role);
-      // Restablecer el formulario después de enviarlo
-      this.registerForm.reset();
-    }
-  }
+  constructor(private router: Router) { }
 
   cancel() {
     this.router.navigate(['/admin-managment']);

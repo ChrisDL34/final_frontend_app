@@ -1,1 +1,6 @@
-<app-add-user />
+<app-add-user
+  [registerForm]="registerForm"
+  [onSubmit]="onSubmit.bind(this)"
+  [error]="error"
+  [passwordStrength]="passwordStrength">
+</app-add-user>

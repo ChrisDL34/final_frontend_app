@@ -1,2 +1,15 @@
-
-<app-admin-managment />
+<app-admin-managment
+  [users]="users$ | async"
+  [deleteUser]="deleteUser"
+  [addUser]="addUser"
+  [buyBooks]="buyBooks"
+  [editUser]="editUser"
+  [modalTitle]="modalTitle"
+  [modalMessage]="modalMessage"
+  [modalCloseButtonMessage]="modalCloseButtonMessage"
+  [modalConfirmButtonMessage]="modalConfirmButtonMessage"
+  [modalContinueBehavior]="modalContinueBehavior"
+  [modalIsShown]="modalIsShown"
+  [modalContinueParams]="modalContinueParams"
+  [modalCloseBehavior]="modalClose"
+/>

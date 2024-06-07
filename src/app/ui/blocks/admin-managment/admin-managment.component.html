@@ -5,8 +5,8 @@
       <table>
           <thead>
               <tr>
-                  <th>Username</th>
-                  <th>Email</th>
+                  <th>Usuario</th>
+                  <th>Correo</th>
                   <th>Rol</th>
                   <th>Acciones</th>
               </tr>
@@ -18,18 +18,28 @@
                   <td>{{ usuario.role }}</td>
                   <td class="actions">
 
-                      <button (click)="editarUsuario(usuario)">Editar</button>
-                      <button (click)="eliminarUsuario(usuario)">Eliminar</button>
-                      <button *ngIf="usuario.role === 'SUPPLIER'" (click)="pedidoUsuario(usuario)">Pedido</button>
+                      <button (click)="editUser(usuario)">Editar</button>
+                      <button (click)="deleteUser(usuario.userId)">Eliminar</button>
+                      <button *ngIf="usuario.role === 'SUPPLIER'" (click)="buyBooks()">Pedido</button>
                   </td>
               </tr>
           </tbody>
       </table>
+      <app-modal-element
+      [title]="modalTitle"
+      [message]="modalMessage"
+      [closeButtonMessage]="modalCloseButtonMessage"
+      [confirmButtonMessage]="modalConfirmButtonMessage"
+      [continue]="modalContinueBehavior"
+      [show]="modalIsShown"
+      [continueParams]="modalContinueParams"
+      [close]="modalCloseBehavior"
+      />
 
   </div>
 
 
 </div>
 <div class="buttton_container">
-  <a class="add-user-button" (click)="agregarUsuario()">Agregar Usuario</a>
+  <a class="add-user-button" (click)="addUser()">Agregar Usuario</a>
 </div>
