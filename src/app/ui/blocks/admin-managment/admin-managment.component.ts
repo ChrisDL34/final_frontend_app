@@ -1,45 +1,29 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Input } from '@angular/core';
+import { User } from '../../../core/models/users.model';
+import { ModalElementComponent } from '../../elements/modal-element/modal-element.component';
 
 @Component({
   selector: 'app-admin-managment',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ModalElementComponent],
   templateUrl: './admin-managment.component.html',
   styleUrls: ['./admin-managment.component.css']
 })
 export class AdminManagmentComponent {
-  constructor(private router: Router) {}
-
-  usuarios = [
-    { username: 'john_doe', email: 'john@example.com', rol: 'admin' },
-    { username: 'jane_smith', email: 'jane@example.com', rol: 'user' },
-    { username: 'jane_smith', email: 'jane@example.com', rol: 'provider' },
-    { username: 'jane_smith', email: 'jane@example.com', rol: 'provider' },
-    { username: 'jane_smith', email: 'jane@example.com', rol: 'provider' },
-    { username: 'jane_smith', email: 'jane@example.com', rol: 'provider' },
-    { username: 'jane_smith', email: 'jane@example.com', rol: 'provider' },
-    { username: 'jane_smith', email: 'jane@example.com', rol: 'provider' },
-    { username: 'jane_smith', email: 'jane@example.com', rol: 'provider' },
-    { username: 'jane_smith', email: 'jane@example.com', rol: 'provider' },
-    { username: 'jane_smith', email: 'jane@example.com', rol: 'provider' }
-  ];
-
-  editarUsuario(usuario: any) {
-    this.router.navigate(['/edit-user']);
-  
-  }
-
-  eliminarUsuario(usuario: any) {
-    
-  }
-
-  pedidoUsuario(usuario: any) {
-    this.router.navigate(['/request-providers']);
-  }
-
-  agregarUsuario() {
-    this.router.navigate(['/add-user']);
-  }
+  @Input()  users!: User[] | null;
+  @Input() deleteUser:(userId:string)=>void;
+  @Input() addUser:()=>void;
+  @Input() buyBooks:()=>void;
+  @Input() editUser:(user:User)=>void;
+  @Input() modalTitle:string;
+  @Input() modalMessage:string;
+  @Input() modalCloseButtonMessage:string;
+  @Input() modalConfirmButtonMessage:string | undefined;
+  @Input() modalContinueBehavior: (any)=>void | undefined;
+  @Input() modalIsShown: boolean;
+  @Input() modalContinueParams: any;
+  @Input() modalCloseBehavior:()=>void;
 }
+
+

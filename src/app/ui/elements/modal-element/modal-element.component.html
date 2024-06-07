@@ -1,0 +1,8 @@
+<div class="modal" [class.show]="show">
+  <div class="modal-content">
+      <h2>{{title}}</h2>
+      <p>{{message}}</p>
+      <button class="btn-close" (click)="close()">{{closeButtonMessage}}</button>
+      <button *ngIf="confirmButtonMessage != undefined" class="btn-confirm" (click)="continue(continueParams)">{{confirmButtonMessage}}</button>
+  </div>
+</div>

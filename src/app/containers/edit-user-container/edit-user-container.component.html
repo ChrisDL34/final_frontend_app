@@ -1,1 +1,10 @@
-<app-edit-user />
+<app-edit-user
+[registerForm]="registerForm"
+  [onSubmit]="onSubmit.bind(this)"
+  [error]="error"
+  [modalTitle]="modalTitle"
+  [modalMessage]="modalMessage"
+  [modalCloseButtonMessage]="modalCloseButtonMessage"
+  [modalIsShown]="modalIsShown"
+  [modalCloseBehavior]="modalClose"
+/>

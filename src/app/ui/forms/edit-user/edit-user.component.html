@@ -9,7 +9,7 @@
       <span *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched" class="register__span-error">
         El username debe tener al menos 3 caracteres.
       </span>
-      
+
       <label class="register__label">
         <span class="register__span">Correo electrónico</span>
         <input type="email" formControlName="email" class="register__input" [class.error]="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
@@ -17,24 +17,32 @@
       <span *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="register__span-error">
         Introduzca una dirección de correo electrónico válida.
       </span>
-      
+
       <label class="register__label">
         <span class="register__span">ROL</span>
         <select formControlName="role" class="register__input">
-          <option value="invitado">Asistente</option>
-          <option value="administrador">Administrador</option>
-          <option value="proveedor">Proveedor</option>
-          <option value="lector">Lector</option>
+          <option value="ASSISTANT">Asistente</option>
+          <option value="ADMIN">Administrador</option>
+          <option value="SUPPLIER">Proveedor</option>
+          <option value="READER">Lector</option>
         </select>
       </label>
-      
+
       <span *ngIf="error" class="register__span-error">{{ error }}</span>
     </fieldset>
-    
+
     <button type="submit" class="register__button" [disabled]="registerForm.invalid">Completar</button>
-    
+
     <div class="register__signIn">
       <a type="button" class="register__signIn-register" (click)="cancel()">Cancelar</a>
     </div>
+    <app-modal-element
+  [title]="modalTitle"
+  [message]="modalMessage"
+  [closeButtonMessage]="modalCloseButtonMessage"
+  [show]="modalIsShown"
+  [close]="modalCloseBehavior"
+  />
   </form>
+
 </div>
