@@ -2,12 +2,11 @@
   <form [formGroup]="literatureForm" (ngSubmit)="onSubmit()" class="register__form">
     <h1 class="register__title">Crear Literatura</h1>
     <fieldset class="register__fieldset">
-      
       <label class="register__label">
         <span class="register__span">ID del Proveedor:</span>
         <input type="text" formControlName="supplierId" class="register__input">
       </label>
-      
+
       <label class="register__label">
         <span class="register__span">Tipo de Literatura:</span>
         <select formControlName="type" (change)="onTypeChange($event)" class="register__input">
@@ -66,4 +65,12 @@
 
     <button type="submit" class="register__button">Crear</button>
   </form>
+
+  <div class="modal" [class.show]="mostrarModal">
+    <div class="modal-content">
+      <span class="close" (click)="cerrarModal()">&times;</span>
+      <h2>Creación Confirmada</h2>
+      <p>La literatura ha sido creada exitosamente.</p>
+    </div>
+  </div>
 </div>

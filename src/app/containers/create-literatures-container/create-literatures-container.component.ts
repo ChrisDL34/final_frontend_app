@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CreateLiteraturesComponent } from '../../ui/forms/create-literatures/create-literatures.component';
@@ -9,10 +9,13 @@ import { CreateLiteraturesContainerFacade } from './create-literatures-container
   standalone: true,
   imports: [CreateLiteraturesComponent],
   templateUrl: './create-literatures-container.component.html',
+ 
 })
 export class CreateLiteraturesContainerComponent {
   literatureForm: FormGroup;
   selectedType: string = '';
+
+  @ViewChild(CreateLiteraturesComponent) childComponent!: CreateLiteraturesComponent;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -43,7 +46,7 @@ export class CreateLiteraturesContainerComponent {
           response => {
             console.log('Novela creada exitosamente', response);
             this.literatureForm.reset();
-            this.router.navigate(['/create']);  
+            this.childComponent.showModal();
           },
           error => {
             console.error('Error al crear novela', error);
@@ -54,7 +57,7 @@ export class CreateLiteraturesContainerComponent {
           response => {
             console.log('Libro creado exitosamente', response);
             this.literatureForm.reset();
-            this.router.navigate(['/create']);  
+            this.childComponent.showModal();
           },
           error => {
             console.error('Error al crear libro', error);

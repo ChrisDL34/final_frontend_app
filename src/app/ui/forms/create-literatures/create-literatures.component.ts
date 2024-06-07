@@ -1,5 +1,5 @@
-import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
@@ -10,11 +10,20 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
   styleUrls: ['./create-literatures.component.css']
 })
 export class CreateLiteraturesComponent {
-  @Input() literatureForm!: FormGroup;
-  @Input() onSubmit!: () => void;
+  @Input() literatureForm: FormGroup;
+  @Input() onSubmit: () => void;
   @Input() selectedType: string = '';
+  mostrarModal: boolean = false;
 
   constructor() {}
+
+  cerrarModal() {
+    this.mostrarModal = false;
+  }
+
+  showModal() {
+    this.mostrarModal = true;
+  }
 
   onTypeChange(event: Event) {
     const target = event.target as HTMLSelectElement;
