@@ -70,4 +70,9 @@ requestQuote(supplierId: string, items: { itemIdList: { id: string; amount: numb
     const url = `${URL_RESOURCES.requestQuote.replace('{supplierId}', supplierId)}`;
     return this.httpService.post(url, JSON.stringify(items));
   }
+
+  confirmQuote(request: { quoteId: string, confirmed: boolean }): Observable<any> {
+    const url = URL_RESOURCES.confirmQuote;
+    return this.httpService.post(url, JSON.stringify(request));
+  }
 }
