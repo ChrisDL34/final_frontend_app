@@ -19,7 +19,11 @@ doRefreshToken(refreshToken: IrefreshToken){
   console.log(url +"  "+ JSON.stringify(refreshToken))
   return this.httpService.post<String>(url,JSON.stringify(refreshToken))
     .pipe(
-      map((result) => this.mapper.map(result))
+      map((result) => {
+        console.log("HERE?")
+        console.log(result)
+        return this.mapper.map(result)
+      })
     );
 }
 }

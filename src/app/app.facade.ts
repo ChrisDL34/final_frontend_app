@@ -19,18 +19,26 @@ export class AppFacade {
   ) {}
 
   getRefreshToken$(): Observable<string> {
-        const refreshToken: IrefreshToken = { token: URL_RESOURCES.adminRefreshToken };
-        this.storageService.set('refreshToken', URL_RESOURCES.adminRefreshToken);
-        return this.authService
+    var token= "";
+    this.route.queryParamMap.subscribe((queryParams) => {
+      token = queryParams.get('token');
+      console.log('Token extraído:', token);
+      if (token) {
+        const refreshToken: IrefreshToken = { token: token };
+        this.storageService.set('refreshToken', token);
+        this.authService
           .doRefreshToken(refreshToken)
           .pipe(
             map((auths) => {
+              console.log("hsdhiuajshdioauhdnoklais")
               this.storageService.set('token', auths.token);
               this.storageService.set('userId', auths.userId);
               this.storageService.set('userName', auths.userName);
               this.userState.setUserAuth(auths);
-              return auths.token
             })
           );
-      }
+        }
+      });
+      return this.storageService.get('refreshToken');
+    }
 }
