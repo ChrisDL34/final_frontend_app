@@ -5,5 +5,6 @@ export const URL_RESOURCES={
   createUser: `${environment.apiUrl}/User/CreateUser`,
   updateUser: `${environment.apiUrl}/User/UpdateUser`,
   deleteUser: `${environment.apiUrl}/User/DeleteUserById`,
-  getSupplierBooks: `${environment.apiUrl}/SupplierItems/GetAll` 
+  getSupplierBooks: `${environment.apiUrl}/SupplierItems/GetAll` ,
+  requestQuote: `${environment.apiUrl}/Quote/request/{supplierId}`
 }

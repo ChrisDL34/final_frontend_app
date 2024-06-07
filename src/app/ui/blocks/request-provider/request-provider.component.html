@@ -1,51 +1,61 @@
 <body>
-    <div class="container">
-        <div class="table-container">
-          <table>
-            <thead>
-              <tr>
-                <th>Título del libro</th>
-                <th>Autor</th>
-                <th>Tipo</th>
-                <th>Precio</th>
-                <th>Acciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let libro of libros">
-                <td>{{ libro.titulo }}</td>
-                <td>{{ libro.autor }}</td>
-                <td>{{ libro.tipo }}</td>
-                <td>{{ libro.precio | currency }}</td>
-                <td>{{ libro.stock }}</td> 
-                <td class="actions">
-                  <button (click)="agregarAlCarrito(libro)">+</button>
-                  <button (click)="quitarDelCarrito(libro)">-</button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+  <div class="container">
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Título del libro</th>
+            <th>Autor</th>
+            <th>Tipo</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let libro of libros">
+            <td>{{ libro.titulo }}</td>
+            <td>{{ libro.autor }}</td>
+            <td>{{ libro.tipo }}</td>
+            <td>{{ libro.precio | currency }}</td>
+            <td>{{ libro.stock }}</td>
+            <td class="actions">
+              <button (click)="agregarAlCarrito(libro)">+</button>
+              <button (click)="quitarDelCarrito(libro)">-</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="carrito-container">
+    <h2>Carrito de compras</h2>
+    <ul>
+      <li *ngFor="let item of carrito">
+        {{ item.libro.titulo }} - Cantidad: {{ item.cantidad }}
+      </li>
+    </ul>
+    <button class="btn-enviar" (click)="abrirModal()">Enviar solicitud</button>
+  </div>
+  <div class="modal" [class.show]="mostrarModal">
+    <div class="modal-content">
+      <div *ngIf="respuestaSolicitud; else loading">
+        <h2>Solicitud enviada con éxito</h2>
+        <p>Código de Cotización: {{ respuestaSolicitud.quoteId }}</p>
+        <p>Valor Total de la Cotización: {{ respuestaSolicitud.totalQuoteValue | currency }}</p>
+        <div *ngFor="let item of respuestaSolicitud.itemsList">
+          <p>{{ item.title }} - Precio: {{ item.price | currency }}</p>
         </div>
       </div>
-    <div class="carrito-container">
-        <h2>Carrito de compras</h2>
-        <ul>
-            <li *ngFor="let item of carrito">
-                {{ item.libro.titulo }} - Cantidad: {{ item.cantidad }}
-            </li>
-        </ul>
-        <button class="btn-enviar" (click)="abrirModal()">Enviar solicitud</button>
+      <ng-template #loading>
+        <h2>Total a pagar</h2>
+        <p>El total a pagar es: {{ totalCarrito() | currency }}</p>
+        <button class="btn-close" (click)="cerrarModal()">Cerrar</button>
+        <button class="btn-confirm" (click)="enviarSolicitud()">Confirmar compra</button>
+      </ng-template>
     </div>
-    <div class="modal" [class.show]="mostrarModal">
-        <div class="modal-content">
-            <h2>Total a pagar</h2>
-            <p>El total a pagar es: {{ totalCarrito() | currency }}</p>
-            <button class="btn-close" (click)="cerrarModal()">Cerrar</button>
-            <button class="btn-confirm" (click)="enviarSolicitud()">Confirmar compra</button>
-        </div>
-    </div>
-    <div class="register__signIn">
-        <a type="button" class="register__signIn-register" (click)="cancel()" >Cancelar</a>
-      </div>
-
+  </div>
+  <div class="register__signIn">
+    <a type="button" class="register__signIn-register" (click)="cancel()">Cancelar</a>
+  </div>
 </body>

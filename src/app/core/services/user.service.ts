@@ -56,15 +56,20 @@ export class UserService{
     return this.httpService.get<any[]>(url).pipe(
       map((response: any[]) => {
         return response.map((item) => ({
+          id: item.id,
           title: item.title,
           author: item.author,
-          itemType: item.itemType,
           sellPrice: item.sellPrice,
           stock: item.stock,
+          itemType: item.itemType,
         }) as Book);
       })
     );
   }
-  
+
+  requestQuote(supplierId: string, items: { itemIdList: { id: string; amount: number }[] }): Observable<any> {
+    const url = `${URL_RESOURCES.requestQuote.replace('{supplierId}', supplierId)}`;
+    return this.httpService.post(url, JSON.stringify(items));
+  }
 
 }
